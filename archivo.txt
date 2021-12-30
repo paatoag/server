@@ -1,0 +1,49 @@
+hostnamectl set-hostname luis.loyola = cambiar nombre de host
+
+yum update && yum upgrade = actualizar y upgradear
+
+yum install httpd = instalar apache
+
+cat /etc/httpd/conf/httpd.conf = revisar el archivo de configuración de apache.
+cp /etc/httpd/conf/httpd.conf ~/httpd.conf.backup = copia del archivo conf a directorio del root
+
+systemctl enable httpd.service = habilitar el servicio apache
+systemctl restart httpd.service = reiniciar el servicio apache
+systemctl status httpd.service  = verificar si el servicio esta funcionando
+
+# instalar php
+amazon-linux-extras enable php7.4
+yum install php-cli php-pdo php-fpm php-json php-mysqlnd
+
+
+yum install mariadb-server = instalar el servidor base dedatos mariaDB
+systemctl enable mariadb.service = habilitar o daemonizar el servicio
+systemctl start mariadb.service = iniciar el servicio de mariadb
+systemctl status mariadb.service = verificar si el servicio funciona
+mysql_secure_installation = configurar el acceso del rut y eliminando usuarios por defecto (poner a todo -y)
+mysql -u root -p = accedes a msql en modo consola con -u (usuario) root -p 
+show databases = nos mostrara las base de datos creadas
+Quit = salir de mariaDB
+
+amazon-linux-extras enable php7.4 = habilitamos php 7.4
+Copiar y pegar el comando que nos genera la consola
+systemctl restart httpd.service = se vuelve a reiniciar php
+systemctl restart mariadb.service = se vuelve a reiniciar mariaDB
+
+#Configuración del servidor apache:
+cd /var/www/html/ = es la ruta donde se almacenara wordpress
+wget https://cl.wordpress.org/latest-es_CL.zip = con este comando descargamos el zip de wordpress
+unzip latest-es_CL.zip = descomprimimos los archivos del zip
+chown -R apache:apache /var/www/html/* = cambiamos el dominio de root a apache de todo el contenido de la carpeta html
+chmod 775 /var/www/html/wordpress/ = le damos permisos a la carpeta wordpress
+
+#CREANDO LA BASE DE DATOS:
+mysql -u root -p = accedemos a mysql para crear la base de datos
+CREATE DATABASE wordpress; =  creamos la base de datos de wordpress
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password'; = creamos el user de la base de datos y la contraseña
+GRANT ALL PRIVILEGES ON wordpress.* TO 'newuser'@'localhost'; = otorgamos todos los accesos del usser a la base de datos de wordpress
+FLUSH PRIVILEGES; = limpiar los privilegios de la cache.
+
+#INSTALACION POR CONSOLA DE WORDPRESS
+cp wp-config-sample.php wp-config.php = copiamos el archivo de ejemplo de config al archivo que usaremos originalmente
+vim wp-config.php = editar archivo / en su defecto se puede usar nano
