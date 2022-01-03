@@ -1,0 +1,17 @@
+
+	* ahora se viene lo chido *
+
+hostnamectl set-hostname lucho.loyola -> cambiar nombre de host
+yum update && yum upgrade -> actualizar y upgradear
+
+	* apache *
+
+yum install httpd = instalar apache
+cat /etc/httpd/conf/httpd.conf -> revisar el archivo de configuración de apache.
+cp /etc/httpd/conf/httpd.conf ~/httpd.conf.backup -> copia del archivo conf a directorio del root
+
+systemctl enable httpd.service -> habilitar el servicio apache
+systemctl restart httpd.service -> reiniciar el servicio apache
+systemctl status httpd.service  -> verificar si el servicio esta funcionando
+
+Si todo salió bien puedes buscar en el navegador la ip

@@ -1,0 +1,23 @@
+	
+	* pasos iniciales *
+
+sudo -i
+passwd
+vim /etc/ssh/sshd_config
+
+	* cambiar la configuración para acceder como root *
+
+vim /etc/ssh/sshd_config -> para abrir la wea (:i :wq) -> set number()lineas 38, 61 y 63 aprox
+
+38 PermitRootLogin yes -> sacar el comentario
+61 PasswordAuthentication yes -> quitar el comentario
+63 #PasswordAuthentication no -> dejarlo comentado
+
+service sshd restart
+
+-> en este punto se puede iniciar con el root
+
+	* ingresar como root * 
+ 
+curl ifconfig.me -> me entrega la ip
+ssh root@<ip>

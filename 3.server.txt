@@ -1,0 +1,35 @@
+
+	* php *
+
+# instalar php
+amazon-linux-extras enable php7.4
+yum install php-cli php-pdo php-fpm php-json php-mysqlnd -> este comando sale como sugerencia
+
+systemctl restart httpd.service -> reiniciar el servicio apache
+
+
+	* maria de Angel *
+
+yum install mariadb-server -> instalar el servidor base dedatos mariaDB
+systemctl enable mariadb.service -> habilitar o daemonizar el servicio
+systemctl start mariadb.service -> iniciar el servicio de mariadb
+systemctl status mariadb.service -> verificar si el servicio funciona
+
+	* ingresar a la base datos * 
+
+mysql_secure_installation -> configurar el acceso del rut y eliminando usuarios por defecto (poner a todo -y) 
+YES YES YES DIJO EL LUIS
+#para administrar
+mysql -u root -p -> accedes a msql en modo consola con -u (usuario) root -p 
+show databases; -> nos mostrara las base de datos creadas
+SELECTO USER FROM mysql.user;
+quit -> salir de mariaDB
+
+ 	* creando base de datos *
+
+mysql -u root -p -> accedemos a mysql para crear la base de datos
+CREATE DATABASE wordpress; ->  creamos la base de datos de wordpress
+CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'usuario'; -> creamos el user de la base de datos y la contraseña
+GRANT ALL PRIVILEGES ON wordpress.* TO 'usuario'@'localhost'; -> otorgamos todos los accesos del user a la base de datos de wordpress
+FLUSH PRIVILEGES; = limpiar los privilegios de la cache.
+quit -> salir de mariaDB

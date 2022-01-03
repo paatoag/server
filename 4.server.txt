@@ -1,0 +1,27 @@
+
+	* configuraciones del servidor apache *
+
+cd /var/www/html/ -> es la ruta donde se almacenara wordpress
+wget https://cl.wordpress.org/latest-es_CL.zip -> con este comando descargamos el zip de wordpress
+unzip latest-es_CL.zip -> descomprimimos los archivos del zip
+chown -R apache:apache /var/www/html/* -> cambiamos el dominio de root a apache de todo el contenido de la carpeta html
+podemos hace un ls -lar para chequear
+Podemos comprobar con la ip
+chmod 775 /var/www/html/wordpress/ -> le damos permisos a la carpeta wordpress
+
+
+amazon-linux-extras enable php7.4 = habilitamos php 7.4
+Copiar y pegar el comando que nos genera la consola
+systemctl restart httpd.service = se vuelve a reiniciar php
+systemctl restart mariadb.service = se vuelve a reiniciar mariaDB
+
+	* intalación por consola de wordpress*
+
+Vim (i, :wq)
+
+cp wp-config-sample.php wp-config.php = copiamos el archivo de ejemplo de config al archivo que usaremos originalmente
+vim wp-config.php = editar archivo / en su defecto se puede usar nano
+
+ingresar los datos de database, user y pass
+
+
