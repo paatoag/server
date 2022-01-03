@@ -1,6 +1,10 @@
 
 
-sudo -ipasswdvim /etc/ssh/sshd_configPermitRootLogin yesPasswordAuthentication yes
+sudo -i
+passwd
+vim /etc/ssh/sshd_config
+PermitRootLogin yes
+PasswordAuthentication yes
 
 hostnamectl set-hostname luis.loyola = cambiar nombre de host
 
